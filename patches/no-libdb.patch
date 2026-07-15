@@ -4,10 +4,10 @@ diff --color -Naur a/debian/control.in b/debian/control.in
 @@ -8,7 +8,7 @@
    lsb-release, sharutils,
    libreadline-dev | libeditreadline-dev, libncurses-dev, @bd_gcc@
-   zlib1g-dev, libbz2-dev, liblzma-dev,
+   zlib1g-dev, libbz2-dev, liblzma-dev, libzstd-dev,
 -  libgdbm-dev, @bd_dbm@,
 +  libgdbm-dev,
-   tk-dev, blt-dev (>= 2.4z),
+   tk-dev,
    libssl-dev,
    libexpat1-dev,
 
@@ -17,16 +17,16 @@ diff --color -Naur a/debian/control b/debian/control
 @@ -8,7 +8,7 @@
    lsb-release, sharutils,
    libreadline-dev | libeditreadline-dev, libncurses-dev,
-   zlib1g-dev, libbz2-dev, liblzma-dev,
+   zlib1g-dev, libbz2-dev, liblzma-dev, libzstd-dev,
 -  libgdbm-dev, libdb-dev,
 +  libgdbm-dev,
-   tk-dev, blt-dev (>= 2.4z),
+   tk-dev,
    libssl-dev,
    libexpat1-dev,
 
 diff --color -Naur a/debian/rules b/debian/rules
 --- a/debian/rules	2024-05-07 12:05:20.265273538 +0200
-+++ b/debian/rules	2024-05-07 12:09:20.237141190 +0200
++++ b/debian/rules	2024-05-07 12:09:20.237141196 +0200
 @@ -90,8 +90,7 @@
  # FIXME: remove sid when uploading to unstable, after bookworm is released
  #ifneq (,$(filter $(distrelase), jessie stretch buster bullseye bookworm sid precise trusty xenial bionic focal groovy hirsute))

@@ -1,0 +1,47 @@
+diff --color -Naur a/debian/control.in b/debian/control.in
+--- a/debian/control.in	2024-05-07 12:05:20.265273538 +0200
++++ b/debian/control.in	2024-05-07 12:08:32.085167735 +0200
+@@ -8,7 +8,7 @@
+   lsb-release, sharutils,
+   libreadline-dev | libeditreadline-dev, libncurses-dev, @bd_gcc@
+   zlib1g-dev, libbz2-dev, liblzma-dev,
+-  libgdbm-dev, @bd_dbm@,
++  libgdbm-dev,
+   tk-dev, blt-dev (>= 2.4z),
+   libssl-dev,
+   libexpat1-dev,
+
+diff --color -Naur a/debian/control b/debian/control
+--- a/debian/control	2025-01-30 08:37:22.608764884 +0100
++++ b/debian/control	2025-01-30 08:37:32.241888449 +0100
+@@ -8,7 +8,7 @@
+   lsb-release, sharutils,
+   libreadline-dev | libeditreadline-dev, libncurses-dev,
+   zlib1g-dev, libbz2-dev, liblzma-dev,
+-  libgdbm-dev, libdb-dev,
++  libgdbm-dev,
+   tk-dev, blt-dev (>= 2.4z),
+   libssl-dev,
+   libexpat1-dev,
+
+diff --color -Naur a/debian/rules b/debian/rules
+--- a/debian/rules	2024-05-07 12:05:20.265273538 +0200
++++ b/debian/rules	2024-05-07 12:09:20.237141190 +0200
+@@ -90,8 +90,7 @@
+ # FIXME: remove sid when uploading to unstable, after bookworm is released
+ #ifneq (,$(filter $(distrelase), jessie stretch buster bullseye bookworm sid precise trusty xenial bionic focal groovy hirsute))
+   with_dbmmodule = yes
+-  bd_dbm = libdb-dev
+-  dbmliborder = bdb:gdbm
++  dbmliborder = gdbm
+ #else
+ #  bd_dbm = libgdbm-compat-dev
+ #  dbmliborder = gdbm:bdb
+@@ -815,7 +814,6 @@
+ 	    -e "s/@MINPRIO@/$(PY_MINPRIO)/g" \
+ 	    -e "s/@bd_qual@/$(bd_qual)/g" \
+ 	    -e "s/@bd_gcc@/$(bd_gcc)/g" \
+-	    -e "s/@bd_dbm@/$(bd_dbm)/g" \
+ 	    -e "s/@bd_dpkgdev@/$(bd_dpkgdev)/g" \
+ 		debian/control.in \
+ 		debian/control.stdlib \
